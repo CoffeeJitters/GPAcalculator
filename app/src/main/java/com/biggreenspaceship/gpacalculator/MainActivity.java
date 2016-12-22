@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 double gpa = 0.0;
                 for (int j : gradesIntArray) {
                     gpa =+ j;
+                    gpa =+ i;
                 }
 
             }
