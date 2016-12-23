@@ -131,11 +131,11 @@ public class MainActivity extends AppCompatActivity {
                     creditsIntArray[i] = newCreditsInt;
 
                     gradeList = (ListView) findViewById(R.id.muhlist);
-                    listAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, gradesArray);
+                    listAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, gradesArray);
                     gradeList.setAdapter(listAdapter);
 
                     gradeList = (ListView) findViewById(R.id.muhlist2);
-                    listAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, creditsArray);
+                    listAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, creditsArray);
                     gradeList.setAdapter(listAdapter);
                     i = i + 1;
                 }
@@ -145,10 +145,19 @@ public class MainActivity extends AppCompatActivity {
         Button button3 = (Button) findViewById(R.id.button);
         button3.setOnClickListener(new View.OnClickListener() {
             public void onClick (View v) {
-                double gpa = 0.0;
-                for (int j : gradesIntArray) {
-                    gpa =+ j;
+                int j;
+                int gradeSum = 0;
+                for (j = 0; j < gradesIntArray.length; j++) {
+                    gradeSum += gradesIntArray[j];
                 }
+                int k;
+                int creditSum = 0;
+                for (k = 0; k < creditsIntArray.length; k++) {
+                    creditSum += creditsIntArray[k];
+                }
+                double finalGPA = ((currentGPA * currentCredits) + ((gradeSum / i) * creditSum)) / (currentCredits + creditSum);
+
+                Toast.makeText(MainActivity.this, "finalGPA: " + finalGPA + " currentGPA: " + currentGPA + " currentCredits: " + currentCredits + " gradeSum: " + gradeSum + " i: " + i + " creditSum: " + creditSum, Toast.LENGTH_LONG).show();
 
             }
         });
